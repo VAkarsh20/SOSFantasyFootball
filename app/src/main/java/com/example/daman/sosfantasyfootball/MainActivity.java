@@ -13,11 +13,15 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "SOS:Main";
-
+    private JSONObject nflResponse;
+    private static Map<String, Player> players;
     private static RequestQueue requestQueue;
 
     @Override
@@ -26,30 +30,35 @@ public class MainActivity extends AppCompatActivity {
 
         requestQueue = Volley.newRequestQueue(this);
         start_call();
+        players = Player.constructPlayerTree(this.nflResponse, this);
         setContentView(R.layout.activity_main);
     }
 
+    private void setNflResponse(JSONObject response) {
+        this.nflResponse = response;
+    }
+
+
     void start_call() {
-        try {
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                    Request.Method.GET,
-                    "https://jsonplaceholder.typicode.com/todos/1",
-                    null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(final JSONObject response) {
-                            Log.d(TAG, response.toString());
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(final VolleyError error) {
-                    Log.w(TAG, error.toString());
+        String URL = "https://api.fantasy.nfl.com/v1/players/stats?statType=seasonStats&season=2018&format=json";
+        JSONObject toReturn = null;
+        final JsonObjectRequest volleyRes = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    setNflResponse(response);
+                    Log.d(TAG, response.toString());
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            });
-            requestQueue.add(jsonObjectRequest);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError e) {
+                Log.w(TAG, e.toString());
+            }
+        });
+        requestQueue.add(volleyRes);
     }
 
 }

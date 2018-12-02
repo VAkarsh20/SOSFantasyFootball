@@ -1,0 +1,15 @@
+1-Games Played
+2-Pass Attempts
+3-Pass Completions
+5-Passing Yards
+6-Passing TDs
+7-Interceptions
+8-Sacks
+13-Rushing Attempts
+14-Rushing Yards
+15-Rushing TDs
+20-Receptions
+21-Recieving Yards
+22-Recieving TDs
+31-Fumbles
+32-Fumbles Lost
