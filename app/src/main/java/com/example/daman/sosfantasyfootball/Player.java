@@ -61,4 +61,34 @@ public class Player {
         return players;
     }
 
+    public String getPosition() { return this.position; }
+
+    public StatisticParser getStats () {
+        return this.stats;
+    }
+
+    public boolean isQuarterBack() {
+        return this.position.equals("QB");
+    }
+
+    public boolean isRunningBack() {
+        return this.position.equals("RB");
+    }
+
+    public boolean isWideReciever() {
+        return this.position.equals("WR");
+    }
+
+    public boolean isDEF() {
+        return this.position.equals("DEF");
+    }
+
+    public boolean isKicker() {
+        return this.position.equals("K");
+    }
+
+    public boolean isTE() {
+        return this.position.equals("TE");
+    }
+
 }
