@@ -21,15 +21,14 @@
             android:layout_height="23dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="64dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:gravity="center_vertical|center_horizontal"
-            android:text="Player 2 Rec Yds / Rec"
+            android:text="Player 2 Rec"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.968"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView19" />
+            tools:layout_editor_absoluteY="407dp" />
 
         <TextView
             android:id="@+id/textView20"
@@ -37,15 +36,14 @@
             android:layout_height="23dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="64dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:gravity="center_vertical|center_horizontal"
-            android:text="Player 1 Rec Yds / Rec"
+            android:text="Player 1 Rec"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.032"
+            app:layout_constraintHorizontal_bias="0.028"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            tools:layout_editor_absoluteY="407dp" />
 
         <TextView
             android:id="@+id/textView19"
@@ -53,15 +51,14 @@
             android:layout_height="23dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:gravity="center_vertical|center_horizontal"
-            android:text="Player 2 Rec Yds"
+            android:text="Player 2 Rush"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.972"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+            tools:layout_editor_absoluteY="339dp" />
 
         <TextView
             android:id="@+id/textView15"
@@ -70,7 +67,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:gravity="center_vertical|center_horizontal"
-            android:text="Player 2 G"
+            android:text="Player 2 Start"
             app:layout_constraintEnd_toEndOf="parent"
             tools:layout_editor_absoluteY="208dp" />
 
@@ -83,11 +80,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:gravity="center_vertical|center_horizontal"
-            android:text="Rec Yds / Rec"
+            android:text="Rec"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="363dp" />
+            tools:layout_editor_absoluteY="407dp" />
 
         <TextView
             android:id="@+id/textView6"
@@ -98,11 +95,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:gravity="center_vertical|center_horizontal"
-            android:text="Player 1 Rec Yds"
+            android:text="Player 1  Rush"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.032"
+            app:layout_constraintHorizontal_bias="0.024"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+            tools:layout_editor_absoluteY="339dp" />
 
         <TextView
             android:id="@+id/textView18"
@@ -110,13 +107,12 @@
             android:layout_height="23dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="44dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:gravity="center_vertical|center_horizontal"
-            android:text="Rec Yds"
+            android:text="Rush"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -129,10 +125,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:gravity="center_vertical|center_horizontal"
-            android:text="Rec"
+            android:text="Pass"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="253dp" />
+            tools:layout_editor_absoluteY="272dp" />
 
         <TextView
             android:id="@+id/textView17"
@@ -143,11 +139,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:gravity="center_vertical|center_horizontal"
-            android:text="Player 2 Rec"
+            android:text="Player 2 Pass"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.968"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="253dp" />
+            tools:layout_editor_absoluteY="272dp" />
 
         <TextView
             android:id="@+id/textView16"
@@ -158,11 +154,11 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:gravity="center_vertical|center_horizontal"
-            android:text="Player 1 Rec"
+            android:text="Player 1 Pass"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.032"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="253dp" />
+            tools:layout_editor_absoluteY="272dp" />
 
         <TextView
             android:id="@+id/textView"
@@ -182,7 +178,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:gravity="center_vertical|center_horizontal"
-            android:text="Player 1 G"
+            android:text="Player 1 Start"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="208dp" />
 
@@ -197,7 +193,7 @@
             android:layout_marginRight="132dp"
             android:layout_marginBottom="8dp"
             android:gravity="center_vertical|center_horizontal"
-            android:text="G"
+            android:text="Start"
             app:layout_constraintBottom_toTopOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.992"
