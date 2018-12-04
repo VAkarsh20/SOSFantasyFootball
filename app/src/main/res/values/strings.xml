@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">SOSFantasyFootball</string>
     <string name="title_activity_statistics">Statistics</string>
+    <string name="passing">Passing</string>
+    <string name="rushing">Rushing</string>
+    <string name="receiving">Receiving</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="welcome_to_sit_or_start_fantasy_football">Welcome to Sit or Start Fantasy Football</string>
+    <string name="compare">compare</string>
+    <string name="player_1">Player 1</string>
+    <string name="player_2">Player 2</string>
+    <string name="enter_players_names">Enter Players\' Names</string>
+    <string name="predicting">Predicting</string>
+
 </resources>

@@ -54,11 +54,12 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Player 2"
+        android:text="@string/player_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Player1" />
+        app:layout_constraintTop_toBottomOf="@+id/Player1"
+        android:autofillHints="" />
 
     <TextView
         android:id="@+id/enterPlayersName"
@@ -66,11 +67,19 @@
         android:layout_height="39dp"
         android:layout_marginTop="36dp"
         android:gravity="center_horizontal|clip_vertical"
-        android:text="Enter Players' Names"
+        android:text="@string/enter_players_names"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Header" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="384dp">
+
+    </android.support.design.widget.TextInputLayout>
 
 </android.support.constraint.ConstraintLayout>
