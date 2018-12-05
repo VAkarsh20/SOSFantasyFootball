@@ -12,5 +12,9 @@
     <string name="player_2">Player 2</string>
     <string name="enter_players_names">Enter Players\' Names</string>
     <string name="predicting">Predicting</string>
+    <string name="title_activity_example">example</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
 
 </resources>
