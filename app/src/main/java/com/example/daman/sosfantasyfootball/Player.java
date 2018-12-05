@@ -6,11 +6,13 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Stream;
 
-public class Player {
+public class Player implements Serializable {
     private static String TAG = "SOS:PlayerClass";
     private String name;
     private String position;
@@ -21,12 +23,12 @@ public class Player {
     private double weekPts;
     private double weekProjectedPts;
 
-    public Player(JSONObject toParse, Context c) {
+    public Player(JSONObject toParse) {
         try {
             this.name = toParse.getString("name");
             this.position = toParse.getString("position");
             this.teamAbbr = toParse.getString("teamAbbr");
-            this.stats = new StatisticParser(toParse.getJSONObject("stats"), c);
+            this.stats = new StatisticParser(toParse.getJSONObject("stats"));
             this.seasonPts = toParse.getDouble("seasonPts");
             this.seasonProjectedPts = toParse.getDouble("seasonProjectedPts");
             this.weekPts = toParse.getDouble("weekPts");
@@ -41,7 +43,7 @@ public class Player {
         return this.name.hashCode();
     }
 
-    public static Map<String, Player> constructPlayerTree(JSONObject response, Context c) {
+    public static Map<String, Player> constructPlayerTree(JSONObject response) {
         JSONArray jsonPlayers = null;
         Map<String, Player> players = new TreeMap<String, Player>();
         try {
@@ -52,13 +54,31 @@ public class Player {
         }
         for (int i = 0; i < jsonPlayers.length(); i++) {
             try {
-                Player p = new Player(jsonPlayers.getJSONObject(i), c);
+                Player p = new Player(jsonPlayers.getJSONObject(i));
                 players.put(p.name, p);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
         return players;
+    }
+
+    public static String formatName(String name) {
+        if (name == null) {
+            return name;
+        }
+        String[] arr = name.split(" ");
+        StringBuffer sb = new StringBuffer();
+
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(Character.toUpperCase(arr[i].charAt(0)))
+                    .append(arr[i].substring(1)).append(" ");
+        }
+        return sb.toString().trim();
+    }
+
+    public static Player getPlayer(Map<String, Player> players, String name) {
+        return players.get(name);
     }
 
     public String getPosition() { return this.position; }
@@ -91,4 +111,45 @@ public class Player {
         return this.position.equals("TE");
     }
 
+    public static String getTAG() {
+        return TAG;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getTeamAbbr() {
+        return teamAbbr;
+    }
+
+    public double getSeasonPts() {
+        return seasonPts;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", position='" + position + '\'' +
+                ", teamAbbr='" + teamAbbr + '\'' +
+                ", stats=" + stats +
+                ", seasonPts=" + seasonPts +
+                ", seasonProjectedPts=" + seasonProjectedPts +
+                ", weekPts=" + weekPts +
+                ", weekProjectedPts=" + weekProjectedPts +
+                '}';
+    }
+
+    public double getSeasonProjectedPts() {
+        return seasonProjectedPts;
+    }
+
+    public double getWeekPts() {
+        return weekPts;
+    }
+
+    public double getWeekProjectedPts() {
+        return weekProjectedPts;
+    }
 }

@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.IllegalFormatException;
@@ -19,7 +20,22 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-public class StatisticParser {
+public class StatisticParser implements Serializable {
+    private final static String temp = "1-Games Played\n" +
+            "2-Pass Attempts\n" +
+            "3-Pass Completions\n" +
+            "5-Passing Yards\n" +
+            "6-Passing TDs\n" +
+            "7-Interceptions\n" +
+            "8-Sacks\n" +
+            "13-Rushing Attempts\n" +
+            "14-Rushing Yards\n" +
+            "15-Rushing TDs\n" +
+            "20-Receptions\n" +
+            "21-Recieving Yards\n" +
+            "22-Recieving TDs\n" +
+            "31-Fumbles\n" +
+            "32-Fumbles Lost";
     private final static String TAG = "SOS:StatisticParser";
     private final static String fileName = "idToStatRefernce.txt";
     public static Map<Integer, String> idToStatName;
@@ -28,7 +44,38 @@ public class StatisticParser {
 
     private Map<String, Double> statistics;
 
-    StatisticParser(JSONObject stats, Context context) {
+    public static String getTemp() {
+        return temp;
+    }
+
+    public static String getTAG() {
+        return TAG;
+    }
+
+    public static String getFileName() {
+        return fileName;
+    }
+
+    public static Map<Integer, String> getIdToStatName() {
+        return idToStatName;
+    }
+
+    @Override
+    public String toString() {
+        return "StatisticParser{" +
+                "statistics=" + statistics +
+                '}';
+    }
+
+    public static Map<String, Integer> getStatNameToId() {
+        return statNameToId;
+    }
+
+    public static Context getStatContext() {
+        return statContext;
+    }
+
+    StatisticParser(JSONObject stats) {
         if (idToStatName == null || statNameToId == null) {
             referenceCreator();
         }
@@ -42,6 +89,7 @@ public class StatisticParser {
                 toSet.put(statName, measure);
             } catch (Exception e) {
                 e.printStackTrace();
+
             }
         }
         this.statistics = toSet;
@@ -62,7 +110,8 @@ public class StatisticParser {
 
     public static Map<Integer, String> idToStatCreator() throws IllegalArgumentException {
         Map<Integer, String> idToStatName = new TreeMap<>();
-        List<String> reference = getLines();
+        //List<String> reference = getLines();
+        String[] reference = temp.split("\n");
         for (String s : reference) {
             String[] parts = s.split("-");
             if (parts.length != 2) {
