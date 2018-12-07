@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class RecievingStatistics extends Fragment {
+    private String[] stats = {"Receptions", "Recieving Yards", "Recieving TDs"};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

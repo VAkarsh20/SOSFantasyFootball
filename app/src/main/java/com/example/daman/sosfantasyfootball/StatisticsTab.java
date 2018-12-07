@@ -1,5 +1,6 @@
 package com.example.daman.sosfantasyfootball;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -11,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,6 +31,13 @@ public class StatisticsTab extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.statistics_tabs);
+
+        Intent i = getIntent();
+        Player p1 = (Player) i.getSerializableExtra("player1");
+        Player p2 = (Player) i.getSerializableExtra("player2");
+
+		Log.d(TAG, p1.toString());
+		Log.d(TAG, p2.toString());
 		
 		mSectionsAdapter = new SectionPageAdapter(getSupportFragmentManager());
 		

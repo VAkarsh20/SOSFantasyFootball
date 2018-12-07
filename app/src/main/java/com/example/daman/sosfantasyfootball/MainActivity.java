@@ -28,30 +28,40 @@ import java.util.Map;
 import java.util.TreeMap;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private final String TAG = "SOS:Main";
     private JSONObject nflResponse;
     private Map<String, Player> players;
     private RequestQueue requestQueue;
 
+    private EditText player1;
+    private EditText player2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         this.requestQueue = Volley.newRequestQueue(this);
         start_call();
         readCache();
         //Log.d(TAG, this.nflResponse.toString());
-        setContentView(R.layout.activity_main);
-        Button submit = findViewById(R.id.button);
-        submit.setOnClickListener(this);
+        setContentView(R.layout.test_view);
+
+        player1 = (EditText) this.findViewById(R.id.p1);
+        player2 = (EditText) this.findViewById(R.id.p2);
+
+        Button submit = findViewById(R.id.submit);
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivityStatistics(v);
+            }
+        });
     }
 
-    @Override
-    public void onClick(View v) {
-        openActivityStatistics(v);
-    }
 
     public void openActivityStatistics(View v) {
         try {
@@ -59,13 +69,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (players == null) {
                 return;
             }
-//            EditText p1Name = (EditText) v.findViewById(R.id.player1);
-//            EditText p2Name = (EditText) v.findViewById(R.id.player2);
-//            Player p1 = Player.getPlayer(players, p1Name.getText().toString());
-//            Player p2 = Player.getPlayer(players, p2Name.getText().toString());
+            Player p1 = Player.getPlayer(players, player1.getText().toString());
+            Player p2 = Player.getPlayer(players, player2.getText().toString());
             Intent i = new Intent(this, StatisticsTab.class);
-//            i.putExtra("player1", p1);
-//            i.putExtra("player2", p2);
+            i.putExtra("player1", p1);
+            i.putExtra("player2", p2);
             startActivity(i);
         } catch (Exception e) {
             e.printStackTrace();

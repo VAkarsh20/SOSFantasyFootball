@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class PassingStatistics extends Fragment{
+    private String[] stats = {"Pass Attempts", "Pass Completions", "Passing Yards", "Passing TDs", "Interceptions", "Sacks"};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
