@@ -22,6 +22,10 @@
             android:name=".Statistics"
             android:label="@string/title_activity_statistics"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".StatisticsTab"
+            android:label="@string/title_activity_statistics_tab"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

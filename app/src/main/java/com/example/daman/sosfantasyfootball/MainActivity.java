@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            EditText p2Name = (EditText) v.findViewById(R.id.player2);
 //            Player p1 = Player.getPlayer(players, p1Name.getText().toString());
 //            Player p2 = Player.getPlayer(players, p2Name.getText().toString());
-            Intent i = new Intent(this, Statistics.class);
+            Intent i = new Intent(this, StatisticsTab.class);
 //            i.putExtra("player1", p1);
 //            i.putExtra("player2", p2);
             startActivity(i);
