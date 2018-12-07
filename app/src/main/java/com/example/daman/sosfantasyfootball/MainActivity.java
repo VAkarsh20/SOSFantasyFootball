@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         this.requestQueue = Volley.newRequestQueue(this);
         start_call();
         readCache();
-        //Log.d(TAG, this.nflResponse.toString());
         setContentView(R.layout.test_view);
 
         player1 = (EditText) this.findViewById(R.id.p1);
@@ -69,15 +68,34 @@ public class MainActivity extends AppCompatActivity {
             if (players == null) {
                 return;
             }
-            Player p1 = Player.getPlayer(players, player1.getText().toString());
-            Player p2 = Player.getPlayer(players, player2.getText().toString());
-            Intent i = new Intent(this, StatisticsTab.class);
-            i.putExtra("player1", p1);
-            i.putExtra("player2", p2);
-            startActivity(i);
+            String player1Name = Player.formatName(player1.getText().toString());
+            String player2Name = Player.formatName(player2.getText().toString());
+            boolean validP1 = checkEnteredString(players, player1Name);
+            boolean validP2 = checkEnteredString(players, player2Name);
+            if (validP1 && validP2) {
+                Player p1 = Player.getPlayer(players, player1Name);
+                Player p2 = Player.getPlayer(players, player2Name);
+                Intent i = new Intent(this, StatisticsTab.class);
+                i.putExtra("player1", p1);
+                i.putExtra("player2", p2);
+                startActivity(i);
+            } else {
+                if (validP1 && !validP2) {
+                    player2.setError("Player not found.");
+                } else if (validP2 && !validP1) {
+                    player1.setError("Player not found.");
+                } else {
+                    player1.setError("Player not found.");
+                    player2.setError("Player not found.");
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean checkEnteredString(Map<String, Player> players, String name) {
+        return players.containsKey(name);
     }
 
     private Map<String, Player> readCache() {
@@ -86,8 +104,6 @@ public class MainActivity extends AppCompatActivity {
             Map<String, Player> players = (Map<String, Player>) in.readObject();
             in.close();
             return players;
-//            Player p = players.get("Russell Wilson");
-//            Log.d(TAG, Double.toString(StatisticParser.completionPercentage(p)));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -106,8 +122,6 @@ public class MainActivity extends AppCompatActivity {
                     Map<String, Player> players = Player.constructPlayerTree(response);
                     out.writeObject(players);
                     out.close();
-                    //setNflResponse(response);
-                    //Log.d(TAG, response.toString());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
