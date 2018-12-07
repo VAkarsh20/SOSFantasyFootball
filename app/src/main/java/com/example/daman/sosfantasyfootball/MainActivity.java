@@ -50,22 +50,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        openActivityStatistics();
+        openActivityStatistics(v);
     }
 
-    public void openActivityStatistics() {
+    public void openActivityStatistics(View v) {
         try {
             Map<String, Player> players = readCache();
             if (players == null) {
                 return;
             }
-            EditText p1Name = (EditText) findViewById(R.id.player1);
-            EditText p2Name = (EditText) findViewById(R.id.player2);
-            Player p1 = Player.getPlayer(players, p1Name.getText().toString());
-            Player p2 = Player.getPlayer(players, p2Name.getText().toString());
+//            EditText p1Name = (EditText) v.findViewById(R.id.player1);
+//            EditText p2Name = (EditText) v.findViewById(R.id.player2);
+//            Player p1 = Player.getPlayer(players, p1Name.getText().toString());
+//            Player p2 = Player.getPlayer(players, p2Name.getText().toString());
             Intent i = new Intent(this, Statistics.class);
-            i.putExtra("player1", p1);
-            i.putExtra("player2", p2);
+//            i.putExtra("player1", p1);
+//            i.putExtra("player2", p2);
             startActivity(i);
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,11 +90,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void start_call() {
         String URL = "https://api.fantasy.nfl.com/v1/players/stats?statType=seasonStats&season=2018&format=json";
         JSONObject toReturn = null;
-        final JsonObjectRequest volleyRes = new JsonObjectRequest(Request.Method.GET, URL,                             null, new Response.Listener<JSONObject>() {
+        final JsonObjectRequest volleyRes = new JsonObjectRequest(Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    ObjectOutput out = new ObjectOutputStream(new FileOutputStream(new File(getCacheDir(),"")+"cacheFile.srl"));
+                    ObjectOutput out = new ObjectOutputStream(new FileOutputStream(new File(getCacheDir(), "") + "cacheFile.srl"));
                     Map<String, Player> players = Player.constructPlayerTree(response);
                     out.writeObject(players);
                     out.close();
