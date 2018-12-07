@@ -1,16 +1,13 @@
 package com.example.daman.sosfantasyfootball;
 
-import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.Serializable;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.stream.Stream;
 
 public class Player implements Serializable {
     private static String TAG = "SOS:PlayerClass";
@@ -36,11 +33,6 @@ public class Player implements Serializable {
         } catch (Exception e) {
             Log.e(TAG, e.toString());
         }
-    }
-
-    @Override
-    public int hashCode() {
-        return this.name.hashCode();
     }
 
     public static Map<String, Player> constructPlayerTree(JSONObject response) {
@@ -81,9 +73,20 @@ public class Player implements Serializable {
         return players.get(name);
     }
 
-    public String getPosition() { return this.position; }
+    public static String getTAG() {
+        return TAG;
+    }
 
-    public StatisticParser getStats () {
+    @Override
+    public int hashCode() {
+        return this.name.hashCode();
+    }
+
+    public String getPosition() {
+        return this.position;
+    }
+
+    public StatisticParser getStats() {
         return this.stats;
     }
 
@@ -109,10 +112,6 @@ public class Player implements Serializable {
 
     public boolean isTE() {
         return this.position.equals("TE");
-    }
-
-    public static String getTAG() {
-        return TAG;
     }
 
     public String getName() {

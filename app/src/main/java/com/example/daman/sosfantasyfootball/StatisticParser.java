@@ -2,23 +2,23 @@ package com.example.daman.sosfantasyfootball;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.os.Environment;
 import android.util.Log;
 
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.IllegalFormatException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 
 public class StatisticParser implements Serializable {
     private final static String temp = "1-Games Played\n" +
@@ -44,36 +44,6 @@ public class StatisticParser implements Serializable {
 
     private Map<String, Double> statistics;
 
-    public static String getTemp() {
-        return temp;
-    }
-
-    public static String getTAG() {
-        return TAG;
-    }
-
-    public static String getFileName() {
-        return fileName;
-    }
-
-    public static Map<Integer, String> getIdToStatName() {
-        return idToStatName;
-    }
-
-    @Override
-    public String toString() {
-        return "StatisticParser{" +
-                "statistics=" + statistics +
-                '}';
-    }
-
-    public static Map<String, Integer> getStatNameToId() {
-        return statNameToId;
-    }
-
-    public static Context getStatContext() {
-        return statContext;
-    }
 
     StatisticParser(JSONObject stats) {
         if (idToStatName == null || statNameToId == null) {
@@ -95,8 +65,40 @@ public class StatisticParser implements Serializable {
         this.statistics = toSet;
     }
 
-    public Map<String, Double> getStatistics() {
-        return this.statistics;
+    public static Map<String, Player> readCache() {
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(new File(new File(MainActivity.getContext().getFilesDir(), "") + "cacheFile.srl")));
+            Map<String, Player> players = (Map<String, Player>) in.readObject();
+            in.close();
+            return players;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getTemp() {
+        return temp;
+    }
+
+    public static String getTAG() {
+        return TAG;
+    }
+
+    public static String getFileName() {
+        return fileName;
+    }
+
+    public static Map<Integer, String> getIdToStatName() {
+        return idToStatName;
+    }
+
+    public static Map<String, Integer> getStatNameToId() {
+        return statNameToId;
+    }
+
+    public static Context getStatContext() {
+        return statContext;
     }
 
     public static void referenceCreator() {
@@ -253,6 +255,17 @@ public class StatisticParser implements Serializable {
             return ((a + b + c + d) / 6) * 100;
         }
         return 0.0;
+    }
+
+    @Override
+    public String toString() {
+        return "StatisticParser{" +
+                "statistics=" + statistics +
+                '}';
+    }
+
+    public Map<String, Double> getStatistics() {
+        return this.statistics;
     }
 
 
