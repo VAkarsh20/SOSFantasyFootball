@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    ObjectOutput out = new ObjectOutputStream(new FileOutputStream(new File(getCacheDir(), "") + "cacheFile.srl"));
+                    ObjectOutput out = new ObjectOutputStream(new FileOutputStream(new File(getFilesDir(), "") + "cacheFile.srl"));
                     Map<String, Player> players = Player.constructPlayerTree(response);
                     out.writeObject(players);
                     out.close();
