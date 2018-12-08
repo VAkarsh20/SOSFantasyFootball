@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.util.Arrays;
 
 public class RecievingStatistics extends Fragment {
-    private String[] statsNames = {"Receptions", "Recieving Yards", "Recieving TDs"};
+    private String[] statsNames = {"Receptions", "Recieving Yards", "Recieving TDs", "Yards/R", "Recieving Yards/G"};
     private double[] recievingStatsPlayer1;
     private double[] recievingStatsPlayer2;
     private TableLayout tl;

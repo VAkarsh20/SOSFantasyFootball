@@ -6,12 +6,14 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.Map;
 
 public class StatisticsTab extends AppCompatActivity {
@@ -48,6 +50,7 @@ public class StatisticsTab extends AppCompatActivity {
         adapter.addFragment(new PassingStatistics(), "Passing");
         adapter.addFragment(new RushingStatistics(), "Rushing");
         adapter.addFragment(new RecievingStatistics(), "Recieving");
+        adapter.addFragment(new Prediction(), "Prediction");
         viewPager.setAdapter(adapter);
     }
 
@@ -71,13 +74,15 @@ public class StatisticsTab extends AppCompatActivity {
     public static TableLayout createTable(double[] statsPlayer1, double[] statsPlayer2, String[] statsNames) {
         TableLayout toReturn = new TableLayout(MainActivity.getContext());
         TableLayout.LayoutParams lp = new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        lp.gravity = Gravity.CENTER_HORIZONTAL;
+        toReturn.setGravity(Gravity.FILL_HORIZONTAL);
+        lp.gravity = Gravity.FILL_HORIZONTAL;
+        DecimalFormat df = new DecimalFormat("#.##");
         toReturn.setLayoutParams(lp);
         for (int i = 0; i < statsNames.length + 1; i++) {
             if (i == 0) {
                 toReturn.addView(createRow(StatisticsTab.getPlayer1().getName(), "", StatisticsTab.getPlayer2().getName()));
             } else {
-                toReturn.addView(createRow(Double.toString(statsPlayer1[i - 1]), statsNames[i - 1], Double.toString(statsPlayer2[i - 1])));
+                toReturn.addView(createRow(df.format(statsPlayer1[i - 1]), statsNames[i - 1], df.format(statsPlayer2[i - 1])));
             }
         }
         return toReturn;
@@ -87,22 +92,32 @@ public class StatisticsTab extends AppCompatActivity {
         TableRow toReturn = new TableRow(MainActivity.getContext());
         TableRow.LayoutParams trtl
                 = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT);
+        toReturn.setGravity(Gravity.CENTER_HORIZONTAL);
         trtl.gravity = Gravity.CENTER_HORIZONTAL;
-        TextView col1 = createTextView(p1Stat);
-        TextView col2 = createTextView(statName);
-        TextView col3 = createTextView(p2Stat);
+        TextView col1 = createTextView(p1Stat, 0);
+        TextView col2 = createTextView(statName, 1);
+        TextView col3 = createTextView(p2Stat, 2    );
         toReturn.addView(col1);
         toReturn.addView(col2);
         toReturn.addView(col3);
         return toReturn;
     }
 
-    public static TextView createTextView(String text) {
+    public static TextView createTextView(String text, int column) {
         TableRow.LayoutParams tvlp
                 = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
         TextView tv = new TextView(MainActivity.getContext());
+        if (column == 1) {
+            tvlp.gravity = Gravity.CENTER_HORIZONTAL;
+            tv.setGravity(Gravity.CENTER_HORIZONTAL);
+        } else if (column == 2) {
+            tvlp.gravity = Gravity.RIGHT;
+            tv.setGravity(Gravity.RIGHT);
+        }
+
         tv.setPadding(24,16,24,16);
         tv.setText(text);
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f);
         tv.setLayoutParams(tvlp);
 
         return tv;

@@ -11,7 +11,7 @@ import android.widget.TableLayout;
 import java.util.Arrays;
 
 public class RushingStatistics extends Fragment {
-    private String[] statsNames = {"Rushing Attempts", "Rushing Yards", "Rushing TDs"};
+    private String[] statsNames = {"Rushing Attempts", "Rushing Yards", "Rushing TDs", "Rushing Yards/A", "Rushing Yards/G"};
     private double[] rushingStatsPlayer1;
     private double[] rushingStatsPlayer2;
 

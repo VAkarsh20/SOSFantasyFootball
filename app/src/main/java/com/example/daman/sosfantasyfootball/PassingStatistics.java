@@ -11,7 +11,7 @@ import android.widget.TableLayout;
 import java.util.Arrays;
 
 public class PassingStatistics extends Fragment {
-    private String[] statsNames = {"Pass Attempts", "Pass Completions", "Passing Yards", "Passing TDs", "Interceptions", "Sacks"};
+    private String[] statsNames = {"Pass Attempts", "Pass Completions", "Passing Yards", "Passing TDs", "Interceptions", "Sacks", "Completion Percentage", "Passing Attempts/G", "Average Yards/A", "Passing Yards/G", "Touchdown %", "Interceptions/A", "Passer Rating"};
     private double[] passingStatsPlayer1;
     private double[] passingStatsPlayer2;
 
