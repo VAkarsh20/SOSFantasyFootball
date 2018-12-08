@@ -47,6 +47,7 @@ public class Player implements Serializable {
         for (int i = 0; i < jsonPlayers.length(); i++) {
             try {
                 Player p = new Player(jsonPlayers.getJSONObject(i));
+                addPositionStats(p);
                 players.put(p.name, p);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -84,6 +85,20 @@ public class Player implements Serializable {
 
     public String getPosition() {
         return this.position;
+    }
+
+    public static void addPositionStats(Player p) {
+        StatisticParser.completionPercentage(p);
+        StatisticParser.passingAttemptsPerGame(p);
+        StatisticParser.averageYardsPerAttempt(p);
+        StatisticParser.passingYardsPerGame(p);
+        StatisticParser.touchdownPercentage(p);
+        StatisticParser.interceptionPerPassingAttempt(p);
+        StatisticParser.rushYardsPerAttempt(p);
+        StatisticParser.rushYardsPerGame(p);
+        StatisticParser.yardsPerReception(p);
+        StatisticParser.recievingYardsPerGame(p);
+        StatisticParser.passerRating(p);
     }
 
     public StatisticParser getStats() {

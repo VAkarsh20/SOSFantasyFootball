@@ -139,101 +139,128 @@ public class StatisticParser implements Serializable {
         return lines;
     }
 
+    public static boolean validNumber(double toCheck) {
+        return toCheck == Double.POSITIVE_INFINITY || toCheck == Double.NEGATIVE_INFINITY || toCheck == Double.NaN;
+    }
+
     public static double completionPercentage(Player player) {
-        if (player.isQuarterBack()) {
-            StatisticParser playerStats = player.getStats();
-            Map<String, Double> stats = playerStats.getStatistics();
-            return stats.get("Pass Completions") / stats.get("Pass Attempts");
-        } else {
-            return 0.0;
+        double toReturn = 0.0;
+        StatisticParser playerStats = player.getStats();
+        Map<String, Double> stats = playerStats.getStatistics();
+        toReturn = stats.getOrDefault("Pass Completions", 0.0) / stats.getOrDefault("Pass Attempts", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
         }
+        stats.put("Completion Percentage", toReturn * 100);
+        return toReturn;
     }
 
     public static double passingAttemptsPerGame(Player player) {
-        if (player.isQuarterBack()) {
-            StatisticParser playerStats = player.getStats();
-            Map<String, Double> stats = playerStats.getStatistics();
-            return stats.get("Pass Attemps") / stats.get("Games Played");
-        } else {
-            return 0.0;
+        double toReturn = 0.0;
+        StatisticParser playerStats = player.getStats();
+        Map<String, Double> stats = playerStats.getStatistics();
+        toReturn = stats.getOrDefault("Pass Attempts", 0.0) / stats.getOrDefault("Games Played", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
         }
+        stats.put("Passing Attempts/G", toReturn);
+        return toReturn;
     }
 
     public static double averageYardsPerAttempt(Player player) {
-        if (player.isQuarterBack()) {
-            StatisticParser playerStats = player.getStats();
-            Map<String, Double> stats = playerStats.getStatistics();
-            return stats.get("Passing Yards") / stats.get("Pass Attempts");
-        } else {
-            return 0.0;
+        double toReturn = 0.0;
+        StatisticParser playerStats = player.getStats();
+        Map<String, Double> stats = playerStats.getStatistics();
+        toReturn = stats.getOrDefault("Passing Yards", 0.0) / stats.getOrDefault("Pass Attempts", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
         }
+        stats.put("Average Yards/A", toReturn);
+        return toReturn;
     }
 
     public static double passingYardsPerGame(Player player) {
-        if (player.isQuarterBack()) {
-            StatisticParser playerStats = player.getStats();
-            Map<String, Double> stats = playerStats.getStatistics();
-            return stats.get("Passing Yards") / stats.get("Games Played");
-        } else {
-            return 0.0;
+        double toReturn = 0.0;
+        StatisticParser playerStats = player.getStats();
+        Map<String, Double> stats = playerStats.getStatistics();
+        toReturn = stats.getOrDefault("Passing Yards", 0.0) / stats.getOrDefault("Games Played", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
         }
+        stats.put("Passing Yards/G", toReturn);
+        return toReturn;
     }
 
     public static double touchdownPercentage(Player player) {
-        if (player.isQuarterBack()) {
-            StatisticParser playerStats = player.getStats();
-            Map<String, Double> stats = playerStats.getStatistics();
-            return stats.get("Pass Completions") / stats.get("Pass Attempts");
-        } else {
-            return 0.0;
+        double toReturn = 0.0;
+        StatisticParser playerStats = player.getStats();
+        Map<String, Double> stats = playerStats.getStatistics();
+        toReturn = stats.getOrDefault("Pass Completions", 0.0) / stats.getOrDefault("Pass Attempts", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
         }
+        stats.put("Touchdown %", toReturn * 100);
+        return toReturn;
     }
 
     public static double interceptionPerPassingAttempt(Player player) {
-        if (player.isQuarterBack()) {
-            StatisticParser playerStats = player.getStats();
-            Map<String, Double> stats = playerStats.getStatistics();
-            return stats.get("Interceptions") / stats.get("Pass Attempts");
-        } else {
-            return 0.0;
+        double toReturn = 0.0;
+        StatisticParser playerStats = player.getStats();
+        Map<String, Double> stats = playerStats.getStatistics();
+        toReturn = stats.getOrDefault("Interceptions", 0.0) / stats.getOrDefault("Pass Attempts", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
         }
+        stats.put("Interceptions/A", toReturn);
+        return toReturn;
     }
 
     public static double rushYardsPerAttempt(Player player) {
+        double toReturn = 0.0;
         StatisticParser playerStats = player.getStats();
         Map<String, Double> stats = playerStats.getStatistics();
-        if (!stats.containsKey("Rushing Yards") && !stats.containsKey("Rushing Attempts")) {
-            return 0.0;
+        toReturn = stats.getOrDefault("Rushing Yards", 0.0) / stats.getOrDefault("Rushing Attempts", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
         }
-        return stats.get("Rushing Yards") / stats.get("Rushing Attempts");
-
+        stats.put("Rushing Yards/A", toReturn);
+        return toReturn;
     }
 
     public static double rushYardsPerGame(Player player) {
+        double toReturn = 0.0;
         StatisticParser playerStats = player.getStats();
         Map<String, Double> stats = playerStats.getStatistics();
-        if (!stats.containsKey("Rushing Yards") && !stats.containsKey("Games Played")) {
-            return 0.0;
+        toReturn = stats.getOrDefault("Rushing Yards", 0.0) / stats.getOrDefault("Games Played", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
         }
-        return stats.get("Rushing Yards") / stats.get("Games Played");
+        stats.put("Rushing Yards/G", toReturn);
+        return toReturn;
     }
 
     public static double yardsPerReception(Player player) {
+        double toReturn = 0.0;
         StatisticParser playerStats = player.getStats();
         Map<String, Double> stats = playerStats.getStatistics();
-        if (!stats.containsKey("Rushing Yards") && !stats.containsKey("Receptions")) {
-            return 0.0;
+        toReturn = stats.getOrDefault("Recieving Yards", 0.0) / stats.getOrDefault("Receptions", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
         }
-        return stats.get("Recieving Yards") / stats.get("Receptions");
+        stats.put("Yards/R", toReturn);
+        return toReturn;
     }
 
     public static double recievingYardsPerGame(Player player) {
+        double toReturn = 0.0;
         StatisticParser playerStats = player.getStats();
         Map<String, Double> stats = playerStats.getStatistics();
-        if (!stats.containsKey("Rushing Yards") && !stats.containsKey("Games Played")) {
-            return 0.0;
+        toReturn = stats.getOrDefault("Recieving Yards", 0.0) / stats.getOrDefault("Games Played", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
         }
-        return stats.get("Recieving Yards") / stats.get("Games Played");
+        stats.put("Recieving Yards/G", toReturn);
+        return toReturn;
     }
 
     public static double correctBounds(double num) {
@@ -247,14 +274,18 @@ public class StatisticParser implements Serializable {
     }
 
     public static double passerRating(Player player) {
+        double toReturn = 0.0;
+        StatisticParser playerStats = player.getStats();
+        Map<String, Double> stats = playerStats.getStatistics();
         if (player.isQuarterBack()) {
             double a = correctBounds((StatisticParser.completionPercentage(player) - 0.3) * 5);
             double b = correctBounds((StatisticParser.averageYardsPerAttempt(player) - 3) * 0.25);
             double c = correctBounds(StatisticParser.touchdownPercentage(player) * 20);
             double d = correctBounds(2.375 - (StatisticParser.interceptionPerPassingAttempt(player) - 25));
-            return ((a + b + c + d) / 6) * 100;
+            toReturn = ((a + b + c + d) / 6) * 100;
         }
-        return 0.0;
+        stats.put("Passer Rating", toReturn);
+        return toReturn;
     }
 
     @Override
