@@ -32,8 +32,8 @@ public class StatisticParser implements Serializable {
             "14-Rushing Yards\n" +
             "15-Rushing TDs\n" +
             "20-Receptions\n" +
-            "21-Recieving Yards\n" +
-            "22-Recieving TDs\n" +
+            "21-Receiving Yards\n" +
+            "22-Receiving TDs\n" +
             "31-Fumbles\n" +
             "32-Fumbles Lost";
     private final static String TAG = "SOS:StatisticParser";
@@ -195,7 +195,7 @@ public class StatisticParser implements Serializable {
         double toReturn = 0.0;
         StatisticParser playerStats = player.getStats();
         Map<String, Double> stats = playerStats.getStatistics();
-        toReturn = stats.getOrDefault("Pass Completions", 0.0) / stats.getOrDefault("Pass Attempts", 0.0);
+        toReturn = stats.getOrDefault("Passing TDs", 0.0) / stats.getOrDefault("Pass Attempts", 0.0);
         if (validNumber(toReturn)) {
             toReturn = 0.0;
         }
@@ -243,23 +243,23 @@ public class StatisticParser implements Serializable {
         double toReturn = 0.0;
         StatisticParser playerStats = player.getStats();
         Map<String, Double> stats = playerStats.getStatistics();
-        toReturn = stats.getOrDefault("Recieving Yards", 0.0) / stats.getOrDefault("Receptions", 0.0);
+        toReturn = stats.getOrDefault("Receiving Yards", 0.0) / stats.getOrDefault("Receptions", 0.0);
         if (validNumber(toReturn)) {
             toReturn = 0.0;
         }
-        stats.put("Yards/R", toReturn);
+        stats.put("Yards/Rec", toReturn);
         return toReturn;
     }
 
-    public static double recievingYardsPerGame(Player player) {
+    public static double receivingYardsPerGame(Player player) {
         double toReturn = 0.0;
         StatisticParser playerStats = player.getStats();
         Map<String, Double> stats = playerStats.getStatistics();
-        toReturn = stats.getOrDefault("Recieving Yards", 0.0) / stats.getOrDefault("Games Played", 0.0);
+        toReturn = stats.getOrDefault("Receiving Yards", 0.0) / stats.getOrDefault("Games Played", 0.0);
         if (validNumber(toReturn)) {
             toReturn = 0.0;
         }
-        stats.put("Recieving Yards/G", toReturn);
+        stats.put("Receiving Yards/G", toReturn);
         return toReturn;
     }
 
@@ -285,6 +285,78 @@ public class StatisticParser implements Serializable {
             toReturn = ((a + b + c + d) / 6) * 100;
         }
         stats.put("Passer Rating", toReturn);
+        return toReturn;
+    }
+
+    public static double passingTouchdownsPerGame(Player player) {
+        double toReturn = 0.0;
+        StatisticParser playerStats = player.getStats();
+        Map<String, Double> stats = playerStats.getStatistics();
+        toReturn = stats.getOrDefault("Passing TDs", 0.0) / stats.getOrDefault("Games Played", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
+        }
+        stats.put("Passing TDs/G", toReturn);
+        return toReturn;
+    }
+
+    public static double rushingTouchdownsPerGame(Player player) {
+        double toReturn = 0.0;
+        StatisticParser playerStats = player.getStats();
+        Map<String, Double> stats = playerStats.getStatistics();
+        toReturn = stats.getOrDefault("Rushing TDs", 0.0) / stats.getOrDefault("Games Played", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
+        }
+        stats.put("Rushing TDs/G", toReturn);
+        return toReturn;
+    }
+
+    public static double receivingTouchdownsPerGame(Player player) {
+        double toReturn = 0.0;
+        StatisticParser playerStats = player.getStats();
+        Map<String, Double> stats = playerStats.getStatistics();
+        toReturn = stats.getOrDefault("Receiving TDs", 0.0) / stats.getOrDefault("Games Played", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
+        }
+        stats.put("Receiving TDs/G", toReturn);
+        return toReturn;
+    }
+
+    public static double rushingAttemptsPerGame(Player player) {
+        double toReturn = 0.0;
+        StatisticParser playerStats = player.getStats();
+        Map<String, Double> stats = playerStats.getStatistics();
+        toReturn = stats.getOrDefault("Rushing Attempts", 0.0) / stats.getOrDefault("Games Played", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
+        }
+        stats.put("Rushing Attempts/G", toReturn);
+        return toReturn;
+    }
+
+    public static double receptionsPerGame(Player player) {
+        double toReturn = 0.0;
+        StatisticParser playerStats = player.getStats();
+        Map<String, Double> stats = playerStats.getStatistics();
+        toReturn = stats.getOrDefault("Receptions", 0.0) / stats.getOrDefault("Games Played", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
+        }
+        stats.put("Rec/G", toReturn);
+        return toReturn;
+    }
+
+    public static double interceptionsPerGame(Player player) {
+        double toReturn = 0.0;
+        StatisticParser playerStats = player.getStats();
+        Map<String, Double> stats = playerStats.getStatistics();
+        toReturn = stats.getOrDefault("Interceptions", 0.0) / stats.getOrDefault("Games Played", 0.0);
+        if (validNumber(toReturn)) {
+            toReturn = 0.0;
+        }
+        stats.put("Interceptions/G", toReturn);
         return toReturn;
     }
 

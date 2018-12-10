@@ -1,6 +1,7 @@
 package com.example.daman.sosfantasyfootball;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -49,7 +50,7 @@ public class StatisticsTab extends AppCompatActivity {
         SectionPageAdapter adapter = new SectionPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new PassingStatistics(), "Passing");
         adapter.addFragment(new RushingStatistics(), "Rushing");
-        adapter.addFragment(new RecievingStatistics(), "Recieving");
+        adapter.addFragment(new ReceivingStatistics(), "Receiving");
         adapter.addFragment(new Prediction(), "Prediction");
         viewPager.setAdapter(adapter);
     }
@@ -97,6 +98,28 @@ public class StatisticsTab extends AppCompatActivity {
         TextView col1 = createTextView(p1Stat, 0);
         TextView col2 = createTextView(statName, 1);
         TextView col3 = createTextView(p2Stat, 2    );
+        //int p1StatInt = Integer.parseInt(p1Stat);
+        //int p2StatInt = Integer.parseInt(p2Stat);
+        if (statName.equals("")) {
+
+        } else if (statName.equals("Interceptions") || statName.equals("Sacks") || statName.equals("Interceptions/G")
+                || statName.equals("Interceptions/A")) {
+            if (p1Stat.compareTo(p2Stat) < 0) {
+                col1.setTextColor(Color.GREEN);
+                col3.setTextColor(Color.RED);
+            } else if (p2Stat.compareTo(p1Stat) < 0) {
+                col1.setTextColor(Color.RED);
+                col3.setTextColor(Color.GREEN);
+            }
+        } else {
+            if (p1Stat.compareTo(p2Stat) > 0) {
+                col1.setTextColor(Color.GREEN);
+                col3.setTextColor(Color.RED);
+            } else if (p2Stat.compareTo(p1Stat) < 0) {
+                col1.setTextColor(Color.RED);
+                col3.setTextColor(Color.GREEN);
+            }
+        }
         toReturn.addView(col1);
         toReturn.addView(col2);
         toReturn.addView(col3);
@@ -122,4 +145,5 @@ public class StatisticsTab extends AppCompatActivity {
 
         return tv;
     }
+
 }

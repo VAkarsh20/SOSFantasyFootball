@@ -97,8 +97,14 @@ public class Player implements Serializable {
         StatisticParser.rushYardsPerAttempt(p);
         StatisticParser.rushYardsPerGame(p);
         StatisticParser.yardsPerReception(p);
-        StatisticParser.recievingYardsPerGame(p);
+        StatisticParser.receivingYardsPerGame(p);
         StatisticParser.passerRating(p);
+        StatisticParser.passingTouchdownsPerGame(p);
+        StatisticParser.rushingTouchdownsPerGame(p);
+        StatisticParser.receivingTouchdownsPerGame(p);
+        StatisticParser.rushingAttemptsPerGame(p);
+        StatisticParser.receptionsPerGame(p);
+        StatisticParser.interceptionsPerGame(p);
     }
 
     public StatisticParser getStats() {
