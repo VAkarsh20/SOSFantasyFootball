@@ -6,4 +6,6 @@
     <color name="colorSecondary">#F44336</color>
     <color name="colorSecondaryDark">#ff7961</color>
     <color name="colorSecondaryAccent">#ba000d</color>
+    <color name="higher">#43a047</color>
+    <color name="lower">#d84315</color>
 </resources>
